@@ -62,5 +62,61 @@ namespace UNO.TDD.Tests
             // Assert
             Assert.Equal(1, yellowCount);
         }
+
+        [Fact]
+        public void DeckMustHaveNineteenNumberedCardsThatAreRed()
+        {
+            // Arrange
+            var deck = new Deck();
+
+            // Act
+            var reds = deck.Cards.Where(x => x.Type == CardTypeEnum.NumberedCard &&
+            x.Color == CardColorEnum.Red).Count();
+
+            // Assert
+            Assert.Equal(19, reds);
+        }
+
+        [Fact]
+        public void DeckMustHaveNineteenNumberedCardsThatAreBlue()
+        {
+            // Arrange
+            var deck = new Deck();
+
+            // Act
+            var blues = deck.Cards.Where(x => x.Type == CardTypeEnum.NumberedCard &&
+            x.Color == CardColorEnum.Blue).Count();
+
+            // Assert
+            Assert.Equal(19, blues);
+        }
+
+        [Fact]
+        public void DeckMustHaveNineteenNumberedCardsThatAreGreen()
+        {
+            // Arrange
+            var deck = new Deck();
+
+            // Act
+            var greens = deck.Cards.Where(x => x.Type == CardTypeEnum.NumberedCard &&
+            x.Color == CardColorEnum.Green).Count();
+
+            // Assert
+            Assert.Equal(19, greens);
+        }
+
+        [Fact]
+        public void DeckMustHaveNineteenNumberedCardsThatAreYellow()
+        {
+            // Arrange
+            var deck = new Deck();
+
+            // Act
+            var yellows = deck.Cards.Where(x => x.Type == CardTypeEnum.NumberedCard &&
+            x.Color == CardColorEnum.Yellow).Count();
+
+            // Assert
+            Assert.Equal(19, yellows);
+        }
     }
 }
