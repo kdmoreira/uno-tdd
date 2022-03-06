@@ -120,7 +120,7 @@ namespace UNO.TDD.Tests
         }
 
         [Fact]
-        public void DechMustHaveTwoSkipCardsThatAreRed()
+        public void DeckMustHaveTwoSkipCardsThatAreRed()
         {
             // Arrange
             var deck = new Deck();
@@ -134,7 +134,7 @@ namespace UNO.TDD.Tests
         }
 
         [Fact]
-        public void DechMustHaveTwoSkipCardsThatAreBlue()
+        public void DeckMustHaveTwoSkipCardsThatAreBlue()
         {
             // Arrange
             var deck = new Deck();
@@ -148,7 +148,7 @@ namespace UNO.TDD.Tests
         }
 
         [Fact]
-        public void DechMustHaveTwoSkipCardsThatAreGreen()
+        public void DeckMustHaveTwoSkipCardsThatAreGreen()
         {
             // Arrange
             var deck = new Deck();
@@ -162,7 +162,7 @@ namespace UNO.TDD.Tests
         }
 
         [Fact]
-        public void DechMustHaveTwoSkipCardsThatAreYellow()
+        public void DeckMustHaveTwoSkipCardsThatAreYellow()
         {
             // Arrange
             var deck = new Deck();
@@ -176,7 +176,7 @@ namespace UNO.TDD.Tests
         }
 
         [Fact]
-        public void DechMustHaveTwoReverseCardsThatAreRed()
+        public void DeckMustHaveTwoReverseCardsThatAreRed()
         {
             // Arrange
             var deck = new Deck();
@@ -190,7 +190,7 @@ namespace UNO.TDD.Tests
         }
 
         [Fact]
-        public void DechMustHaveTwoReverseCardsThatAreBlue()
+        public void DeckMustHaveTwoReverseCardsThatAreBlue()
         {
             // Arrange
             var deck = new Deck();
@@ -204,7 +204,7 @@ namespace UNO.TDD.Tests
         }
 
         [Fact]
-        public void DechMustHaveTwoReverseCardsThatAreGreen()
+        public void DeckMustHaveTwoReverseCardsThatAreGreen()
         {
             // Arrange
             var deck = new Deck();
@@ -218,7 +218,7 @@ namespace UNO.TDD.Tests
         }
 
         [Fact]
-        public void DechMustHaveTwoReverseCardsThatAreYellow()
+        public void DeckMustHaveTwoReverseCardsThatAreYellow()
         {
             // Arrange
             var deck = new Deck();
@@ -232,7 +232,7 @@ namespace UNO.TDD.Tests
         }
 
         [Fact]
-        public void DechMustHaveTwoDraw2CardsThatAreRed()
+        public void DeckMustHaveTwoDraw2CardsThatAreRed()
         {
             // Arrange
             var deck = new Deck();
@@ -246,7 +246,7 @@ namespace UNO.TDD.Tests
         }
 
         [Fact]
-        public void DechMustHaveTwoDraw2CardsThatAreBlue()
+        public void DeckMustHaveTwoDraw2CardsThatAreBlue()
         {
             // Arrange
             var deck = new Deck();
@@ -260,7 +260,7 @@ namespace UNO.TDD.Tests
         }
 
         [Fact]
-        public void DechMustHaveTwoDraw2CardsThatAreGreen()
+        public void DeckMustHaveTwoDraw2CardsThatAreGreen()
         {
             // Arrange
             var deck = new Deck();
@@ -274,7 +274,7 @@ namespace UNO.TDD.Tests
         }
 
         [Fact]
-        public void DechMustHaveTwoDraw2CardsThatAreYellow()
+        public void DeckMustHaveTwoDraw2CardsThatAreYellow()
         {
             // Arrange
             var deck = new Deck();
@@ -288,7 +288,7 @@ namespace UNO.TDD.Tests
         }
 
         [Fact]
-        public void DechMustHaveFourWildCards()
+        public void DeckMustHaveFourWildCards()
         {
             // Arrange
             var deck = new Deck();
@@ -301,7 +301,7 @@ namespace UNO.TDD.Tests
         }
 
         [Fact]
-        public void DechMustHaveTwoWildDraw4Cards()
+        public void DeckMustHaveFourWildDraw4Cards()
         {
             // Arrange
             var deck = new Deck();

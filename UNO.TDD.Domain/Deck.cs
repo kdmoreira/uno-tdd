@@ -5,7 +5,7 @@ namespace UNO.TDD.Domain
 {
     public class Deck
     {
-        public List<Card> Cards { get; set; }
+        public List<Card> Cards { get; private set; }
         public int Size
         {
             get => Cards.Count;
@@ -71,8 +71,8 @@ namespace UNO.TDD.Domain
         public Deck Shuffle()
         {
             Deck deck = new();
-            Random random = new Random();
-            for (int i = deck.Cards.Count - 1; i > 0; i--)
+            Random random = new();
+            for (int i = deck.Size - 1; i > 0; i--)
             {
                 int j = random.Next(i + 1);
                 Card temp = deck.Cards[i];
@@ -82,14 +82,28 @@ namespace UNO.TDD.Domain
             return deck;
         }
 
-        public Deck Distribute()
+        public Deck Distribute(Hand playerHand, Hand pcHand)
         {
-            Deck deck = new();            
-            for (int i = 0; i < 14; i++)
+            PassSevenCards(playerHand);
+            PassSevenCards(pcHand);
+
+            return this;
+        }
+
+        public Card PassCard(Card card)
+        {
+            Cards.Remove(card);
+            return card;
+        }
+
+        // Private Methods
+
+        private void PassSevenCards(Hand hand)
+        {
+            for (int i = 0; i < 7; i++)
             {
-                deck.Cards.RemoveAt(i);
+                hand.TakeCard(PassCard(Cards[i]));
             }
-            return deck;
         }
     }
 }
