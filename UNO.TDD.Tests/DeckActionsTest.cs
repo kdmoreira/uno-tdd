@@ -8,7 +8,7 @@ namespace UNO.TDD.Tests
     public class DeckActionsTest
     {
         [Fact]
-        public void ShuffleMustChangePreviousDeckOrder()
+        public void ShuffleChangesPreviousDeckOrder()
         {
             // Arrange
             var deck = new Deck();
@@ -21,51 +21,82 @@ namespace UNO.TDD.Tests
                 options => options.WithStrictOrdering());
         }
 
-        [Fact]
-        public void DistributeMustResultInDeckWithFourteenLessCards()
+        [Theory]
+        [InlineData(999)]
+        [InlineData(0)]
+        [InlineData(-1)]
+        public void DealCardsHandlesInvalidQuantity(int quantity)
         {
             // Arrange
             var deck = new Deck();
             var size = deck.Size;
-            Hand playerHand = new();
-            Hand pcHand = new();
 
             // Act
-            var deckAfter = deck.Distribute(playerHand, pcHand);
+            deck.DealCards(quantity);
 
             // Assert
-            Assert.Equal(size - 14, deckAfter.Size);
+            Assert.Equal(size, deck.Size);
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(7)]
+        public void DealCardsResultstInDeckWithGivenQuantityLessCards(int quantity)
+        {
+            // Arrange
+            var deck = new Deck();
+            var size = deck.Size;
+
+            // Act
+            deck.DealCards(quantity);
+
+            // Assert
+            Assert.Equal(size - quantity, deck.Size);
         }
 
         [Fact]
-        public void DistributeMustLeaveEachHandWithSevenCards()
+        public void DealInitialCardsGivesEachHandSevenCards()
         {
             // Arrange
             var deck = new Deck();
             Hand playerHand = new();
             Hand pcHand = new();
+            var initialCards = 7;
 
             // Act
-            deck.Distribute(playerHand, pcHand);
+            deck.DealInitialCards(playerHand, pcHand);
 
             // Assert
             Assert.True(playerHand.CardQuantity == pcHand.CardQuantity
-                && playerHand.CardQuantity == 7);
+                && playerHand.CardQuantity == initialCards);
         }
 
         [Fact]
-        public void PassCardMustLeaveDeckWithoutGivenCard()
+        public void PassCardLeavesDeckWithoutGivenCard()
         {
             // Arrange
             var deck = new Deck();
-            var card = deck.Cards[0];
-            var hand = new Hand();
+            var card = deck.Cards.FirstOrDefault();
 
             // Act
             deck.PassCard(card);
 
             // Assert
             Assert.DoesNotContain(card, deck.Cards);
+        }
+
+        [Fact]
+        public void DiscardStarterCardTransfersCardToDiscardPilesTopCard()
+        {
+            // Arrage
+            var deck = new Deck();
+            var discardPile = new DiscardPile();
+
+            // Act
+            var discarded = deck.DiscardStarterCard(discardPile);
+
+            // Assert
+            Assert.True(discarded == discardPile.TopCard);
         }
     }
 }

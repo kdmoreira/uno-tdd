@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace UNO.TDD.Domain
 {
@@ -29,7 +30,7 @@ namespace UNO.TDD.Domain
             {
                 foreach (Card.CardNumberEnum number in Enum.GetValues(typeof(Card.CardNumberEnum)))
                 {
-                    if (number != Card.CardNumberEnum.None && number != Card.CardNumberEnum.Zero 
+                    if (number != Card.CardNumberEnum.None && number != Card.CardNumberEnum.Zero
                         && color != Card.CardColorEnum.None)
                     {
                         for (int i = 0; i < 2; i++)
@@ -82,28 +83,40 @@ namespace UNO.TDD.Domain
             return deck;
         }
 
-        public Deck Distribute(Hand playerHand, Hand pcHand)
+        public void DealInitialCards(Hand playerHand, Hand pcHand)
         {
-            PassSevenCards(playerHand);
-            PassSevenCards(pcHand);
-
-            return this;
+            var quantity = 7;
+            playerHand.TakeCards(DealCards(quantity));
+            pcHand.TakeCards(DealCards(quantity));
         }
+
+        public List<Card> DealCards(int quantity)
+        {
+            List<Card> cards = new();
+
+            if (!(quantity > 0 && quantity <= Size))
+                return cards;
+
+            for (int i = 0; i < quantity; i++)
+            {
+                cards.Add(PassCard(Cards[i]));
+            }
+            return cards;
+        }
+
+        public Card DiscardStarterCard(DiscardPile discardPile)
+        {
+            var starterCard = PassCard(Cards.FirstOrDefault());
+            discardPile.ReceiveCard(starterCard);
+            return starterCard;
+        }
+
+        // Private Methods
 
         public Card PassCard(Card card)
         {
             Cards.Remove(card);
             return card;
-        }
-
-        // Private Methods
-
-        private void PassSevenCards(Hand hand)
-        {
-            for (int i = 0; i < 7; i++)
-            {
-                hand.TakeCard(PassCard(Cards[i]));
-            }
         }
     }
 }

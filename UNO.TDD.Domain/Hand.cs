@@ -13,13 +13,29 @@ namespace UNO.TDD.Domain
 
         public void DrawCard(Deck deck)
         {
-            var card = deck.Cards.First();
+            var card = deck.Cards.First();            
             TakeCard(deck.PassCard(card));
         }
 
         public void TakeCard(Card card)
         {
             Cards.Add(card);
+        }
+
+        public void TakeCards(List<Card> cards)
+        {
+            Cards.AddRange(cards);
+        }
+
+        public void Discard(Card card, DiscardPile discardPile)
+        {
+            Cards.Remove(card);
+            discardPile.ReceiveCard(card);
+        }
+
+        public Card ChooseCard(int position)
+        {
+            return Cards[position - 1];
         }
     }
 }
