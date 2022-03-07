@@ -74,6 +74,18 @@
             Type = CardTypeEnum.WildCard;
         }
 
+        public bool Matches(Card card)
+        {
+            if ((Number == card.Number && Number != CardNumberEnum.None) ||
+                (Color == card.Color && Color != CardColorEnum.None) ||
+                (Action == card.Action && Action != CardActionEnum.None) ||
+                Wild != CardWildEnum.None)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public override string ToString()
         {
             if (Type == CardTypeEnum.NumberedCard)

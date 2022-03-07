@@ -97,5 +97,60 @@ namespace UNO.TDD.Tests
             // Assert
             Assert.Equal(chosenCard, playerHand.Cards[2]);
         }
+
+        [Fact]
+        public void HandPlaysCardWhenChosenCardMatchesTopCard()
+        {
+            // Arrange
+            HandTakesCardThatMatchesDiscardPilesTopCard(out Hand hand, out Card handsCard, 
+                out DiscardPile discardPile);
+
+            // Act
+            var played = hand.Play(handsCard, discardPile);
+
+            // Assert
+            Assert.True(played);
+        }
+
+        [Fact]
+        public void HandPlaysCardAndItBecomesTopCard()
+        {
+            // Arrange
+            HandTakesCardThatMatchesDiscardPilesTopCard(out Hand hand, out Card handsCard,
+                out DiscardPile discardPile);
+
+            // Act
+            hand.Play(handsCard, discardPile);
+
+            // Assert
+            Assert.Equal(handsCard, discardPile.TopCard);
+        }
+
+        [Fact]
+        public void PlayLeavesHandWithoutGivenCard()
+        {
+            // Arrange
+            HandTakesCardThatMatchesDiscardPilesTopCard(out Hand hand, out Card handsCard,
+                out DiscardPile discardPile);
+
+            // Act
+            hand.Play(handsCard, discardPile);
+
+            // Assert
+            Assert.DoesNotContain(handsCard, hand.Cards);
+        }
+
+        // Common Arrangements
+        private static void HandTakesCardThatMatchesDiscardPilesTopCard(out Hand hand, 
+            out Card handsCard, out DiscardPile discardPile)
+        {
+            discardPile = new DiscardPile();
+            hand = new Hand();
+            handsCard = new Card(CardNumberEnum.One, CardColorEnum.Green);
+            var discardedCart = new Card(CardNumberEnum.Two, CardColorEnum.Green);
+
+            hand.TakeCard(handsCard);
+            discardPile.ReceiveCard(discardedCart);
+        }
     }
 }

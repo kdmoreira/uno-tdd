@@ -37,5 +37,14 @@ namespace UNO.TDD.Domain
         {
             return Cards[position - 1];
         }
+
+        public bool Play(Card card, DiscardPile discardPile)
+        {
+            if (!card.Matches(discardPile.TopCard))
+                return false;
+
+            Discard(card, discardPile);
+            return true;
+        }
     }
 }
