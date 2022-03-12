@@ -111,8 +111,6 @@ namespace UNO.TDD.Domain
             return starterCard;
         }
 
-        // Private Methods
-
         public Card PassCard(Card card)
         {
             Cards.Remove(card);
