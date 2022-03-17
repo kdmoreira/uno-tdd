@@ -39,6 +39,24 @@ namespace UNO.TDD.Tests
             Assert.NotEqual(deckSize, deck.Size);
         }
 
+        [Fact]
+        public void PlayerDrawsCardWhen0IsPressed()
+        {
+            // Arrange
+            var deck = new Deck();
+            var discardPile = new DiscardPile();
+            deck.DiscardStarterCard(discardPile);
+            var player = new Player();
+            var deckSize = deck.Size;
+            var input = 0;
+
+            // Act
+            player.PickCard(discardPile, deck, input);
+
+            // Assert
+            Assert.Equal(deckSize - 1, deck.Size);
+        }
+
         // Common Arrangements
         private static void PlayerHasSingleNumberedCard(Card card,
         out Player player, out DiscardPile discardPile, out Deck deck)

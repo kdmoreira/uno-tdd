@@ -35,11 +35,17 @@ namespace UNO.TDD.Domain
 
         public Card ChooseCard(int position)
         {
+            if (position == 0)
+                return null;
+
             return Cards[position - 1];
         }
 
         public bool Play(Card card, DiscardPile discardPile)
         {
+            if (card is null)
+                return false;
+
             if (!card.Matches(discardPile.TopCard))
                 return false;
 
